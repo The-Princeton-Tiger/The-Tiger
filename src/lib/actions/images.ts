@@ -19,7 +19,6 @@ export async function uploadImage(formData: FormData): Promise<string> {
   const articleId = formData.get("articleId") as string | null;
   if (!file || !articleId) throw new Error("Missing file or articleId");
 
-  const bytes = Buffer.from(await file.arrayBuffer());
   const bucket = adminStorage.bucket();
   const path = `images/${articleId}`;
   const ref = bucket.file(path);
